@@ -4,7 +4,9 @@ This is repository contains the scripts to reproduce all figures and analysis fr
 
 Periodicly rhythmic features are detected using the rhythmic.detection.R, and the figures and integrated analysis is performed in the integrated.analysis.R script. Both depend on the functions found in rhythmic.functions.R
 
-SessionInfo for all analysis
+rawData.Rdata contains processed normalized reads and normalized metabolomic peak table. Anonymized participant meta data is found in dataGroups.csv. Periodically rhymthmic features and all associated data needed to perform integrated analysis are found in rhythmic.metabolites.Rdata.
+
+Session Info for all analysis
 
 R version 3.6.3 (2020-02-29)
 Platform: x86_64-w64-mingw32/x64 (64-bit)
