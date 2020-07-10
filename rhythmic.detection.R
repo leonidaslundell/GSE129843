@@ -1,5 +1,5 @@
-load("dataPublication/rawData.Rdata")
-source("scriptsPublication/circadian.functions.R")
+load("rawData.Rdata")
+source("rhythmic.functions.R")
 library(rain)
 library(reshape2)
 library(data.table)
@@ -7,7 +7,6 @@ library(ggplot2)
 library(scales)
 library(matrixTests)
 library(impute)
-
 
 ###############################################################
 #impute metabolomics. No features have more than 20% NAs 
@@ -433,7 +432,7 @@ resSig <- lapply(resSig, function(x){
   x[period == 24]
 })
 
-save(file = "dataPublication/circadian.metabolites.Rdata", 
+save(file = "rhythmic.metabolites.Rdata", 
      list = c("dataAnnotation",
               "dataCurves",
               "dataRaw",
