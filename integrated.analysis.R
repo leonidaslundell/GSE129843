@@ -1,6 +1,7 @@
-rm(list= ls())
-source("scriptsPublication/circadian.functions.R")
-load("dataPublication/circadian.metabolites.Rdata")
+#rm(list=ls())
+source("rhythmic.functions.R")
+load("rhythmic.metabolites.Rdata")
+dir.create("figures")
 
 ##########################################################################################################################################################################
 #reformat res data abit
@@ -1419,7 +1420,7 @@ write.xlsx(list(EXF = resSig$muscle.U[!feature %in% inters, c("feature", "SUPERP
 ##############################################################################################################################
 #supplementary table 1, and 2
 
-load("dataPublication/circadian.metabolites.Rdata")
+load("rhythmic.metabolites.Rdata")
 
 resSig$genes.U$Symbol <- dataAnnotation$genes$Symbol[match(resSig$genes.U$feature, dataAnnotation$genes$genes)]
 resSig$genes.R$Symbol <- dataAnnotation$genes$Symbol[match(resSig$genes.R$feature, dataAnnotation$genes$genes)]
