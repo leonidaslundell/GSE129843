@@ -1,4 +1,6 @@
-This is repository contains the scripts to reproduce all figures and analysis from the publication Time-Restricted Feeding Alters Lipid and Amino Acid Metabolite Rhythmicity without Perturbing Clock Gene Expression 
+This is repository contains the scripts to reproduce all figures and analysis from the publication:
+<b>Time-Restricted Feeding Alters Lipid and Amino Acid Metabolite Rhythmicity without Perturbing Clock Gene Expression</b> published in
+<b>Nature Communications</b>
 
 Periodicly rhythmic features are detected using the rhythmic.detection.R, and the figures and integrated analysis is performed in the integrated.analysis.R script. Both depend on the functions found in rhythmic.functions.R
 
