@@ -650,8 +650,8 @@ plotSerumHalf
 
 ###############
 #plot final figure
-plotGenesOverall + theme(legend.position = "none") + 
-  plotMuscle+theme(legend.position = "none") + 
+plotGenesOverall + theme(legend.position = "bottom") + 
+  plotMuscle+theme(legend.position = "bottom") + 
   plotSerum+theme(legend.position = "bottom", axis.text.x = element_text(size = 12)) + 
   plot_layout(nrow = 3, guides = 'collect', height = c(.75, .1, .1)) &
   scale_size(range = c(1,6), limits = c(0.005, .4), breaks = seq(0.005, .4, length.out = 3), labels = scales::percent_format(.1)) &
@@ -663,8 +663,8 @@ plotGenesOverall + theme(legend.position = "none") +
 
 ggsave("figures/final.enrichments.pdf", height = 6, width = 8)
 
-plotGenesOverallHalf + theme(legend.position = "none", axis.text = element_blank()) + 
-  plotMuscleHalf + theme(legend.position = "none", axis.text = element_blank()) + 
+plotGenesOverallHalf + theme(legend.position = "bottom", axis.text = element_blank()) + 
+  plotMuscleHalf + theme(legend.position = "bottom", axis.text = element_blank()) + 
   plotSerumHalf + theme(legend.position = "bottom", axis.text.x = element_text(size = 15)) + 
   plot_layout(nrow = 3, guides = 'collect', height = c(.75, .1, .1)) &
   scale_size(range = c(1,6), limits = c(0.001, .4), breaks = seq(0.001, .4, length.out = 3), labels = scales::percent_format(.1)) &
