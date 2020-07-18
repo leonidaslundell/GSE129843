@@ -645,31 +645,45 @@ enrichSerumHalf <- compareCluster(feature ~ Diet, data = dataEnrichSerumHalf,
                                   TERM2GENE = term2gene,
                                   universe = dataAnnotation$serum$feature)
 
-plotSerumHalf <- dotplot(enrichSerumHalf)
+plotSerumHalf <- dotplot(enrichSerumHalf, x = ~ Diet) + theme(axis.text.x = element_text(size = 16))
 plotSerumHalf
 
 ###############
 #plot final figure
-plotGenesOverall + theme(legend.position = "bottom") + 
-  plotMuscle+theme(legend.position = "bottom") + 
-  plotSerum+theme(legend.position = "bottom", axis.text.x = element_text(size = 12)) + 
+library(ggpubr)
+scaleSize <- scale_size(range = c(1,6), 
+                        limits = c(0.005, .25),
+                        breaks = seq(0.005, .25, length.out = 3), 
+                        labels = scales::percent_format(.1))
+
+x <- plotGenesOverall +
+  plotMuscle + 
+  plotSerum +
   plot_layout(nrow = 3, guides = 'collect', height = c(.75, .1, .1)) &
-  scale_size(range = c(1,6), limits = c(0.005, .4), breaks = seq(0.005, .4, length.out = 3), labels = scales::percent_format(.1)) &
+  scaleSize &
   scale_color_gradient2(high = '#e41a1c', mid = "#3399FF", low = '#0033CC', midpoint = 0.025, limits = c(0, 0.05), breaks = c(0,0.025,0.05), name = "FDR") &
-  theme(plot.tag = element_text(size = 12),
+  theme(legend.position = "bottom",
+        plot.tag = element_text(size = 12),
         axis.text.y = element_text(size = 8),
         strip.text = element_text(size = 9.5),
         plot.margin = unit(c(-.1,0,-.1,0), "cm")) 
+as_ggplot(get_legend(x))
+ggsave("figures/legendEnrichWhole.pdf", height = 6, width = 5)
+x & theme(legend.position = "none")
+ggsave("figures/final.enrichments.pdf", height = 6, width = 5)
 
-ggsave("figures/final.enrichments.pdf", height = 6, width = 8)
+scaleSize <- scale_size(range = c(1,6), 
+                        limits = c(0.004, .40),
+                        breaks = seq(0.005, .40, length.out = 3), 
+                        labels = scales::percent_format(.1))
 
-plotGenesOverallHalf + theme(legend.position = "bottom", axis.text = element_blank()) + 
-  plotMuscleHalf + theme(legend.position = "bottom", axis.text = element_blank()) + 
-  plotSerumHalf + theme(legend.position = "bottom", axis.text.x = element_text(size = 15)) + 
+plotGenesOverallHalf + scaleSize + 
+  plotMuscleHalf + scaleSize + 
+  plotSerumHalf + scaleSize + 
   plot_layout(nrow = 3, guides = 'collect', height = c(.75, .1, .1)) &
-  scale_size(range = c(1,6), limits = c(0.001, .4), breaks = seq(0.001, .4, length.out = 3), labels = scales::percent_format(.1)) &
   scale_color_gradient2(high = '#e41a1c', mid = "#3399FF", low = '#0033CC', midpoint = 0.025, limits = c(0, 0.05), breaks = c(0,0.025,0.05), name = "FDR") &
-  theme(plot.tag = element_text(size = 12),
+  theme(legend.position = "bottom",
+        plot.tag = element_text(size = 12),
         axis.text.y = element_text(size = 8),
         strip.text = element_text(size = 9.5),
         plot.margin = unit(c(-.1,0,-.1,0), "cm")) 
