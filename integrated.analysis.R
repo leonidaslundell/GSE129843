@@ -1269,9 +1269,7 @@ for(tiss in c("muscle", "serum", "genes")){
 plotsChrono$genes + plotsChrono$muscle + plotsChrono$serum + 
   plot_layout(ncol = 3, nrow=1) & theme(plot.margin = unit(c(0,0.5,1,1), "cm"))
 
-# ggsave("figures/final.chrono.pdf",width = 12, height = 7, device = cairo_pdf)
-#this doesnt work???!
-#save manualy as a jpg...
+ggsave("figures/final.chrono.pdf",width = 17, height = 8, device = cairo_pdf)
 
 #############
 #export data for publication
