@@ -479,6 +479,29 @@ plotChrono <- function(data, limits, labelsExclude, hjust){
   }
   
   plotChronoInternalAxis <- function(gg, limits, hjust = 1.15, labelsExclude){
+plotChrono <- function(data, limits, labelsExclude, hjust){
+  
+  plotChronoInternalBase <- function(data){
+    ggplot(data, aes(x=time, y = value, fill=diet)) +
+      geom_bar(stat="identity", position = "dodge", width = .7) +
+      scale_fill_manual(values=c("black","red1")) +
+      
+      theme_minimal() +
+      theme(axis.title.y =  element_text(color = "black", size = 16, hjust = 0.7),
+            axis.title.x =  element_blank(),
+            axis.text.x = element_text(size = 22, color = "black", vjust = 1),
+            axis.text.y = element_blank(),
+            axis.ticks = element_blank(),
+            axis.line.y.left = element_blank(),
+            legend.text = element_text(size = 20),
+            legend.title =  element_blank(),
+            legend.position = "none",
+            legend.key.size = unit(3,"line"),
+            plot.margin = unit(c(3,3,3,3), "cm")) +
+      coord_polar(start = -.04, clip = "off")
+  }
+  
+  plotChronoInternalAxis <- function(gg, limits, hjust = 1.15, labelsExclude){
     #manual axis
     labelsExclude <- !paste0(seq(10, 100, 10), "%") %in% labelsExclude
     gg +
@@ -510,7 +533,7 @@ plotChrono <- function(data, limits, labelsExclude, hjust){
   plotChronoInternalFood <- function(gg, limits){
     limits <- limits[2]*1.0
     gg + 
-      annotate("text", x = 1, limits, label = sprintf('\u25bc'), color="black", size=10 , angle=-30, fontface="bold") + #U 7:00
+      annotate("text", x = 1, limits*.95, label = sprintf('\u25bc'), color="black", size=10 , angle=-30, fontface="bold") + #U 7:00
       annotate("text", x = 2.75, limits, label = sprintf('\u25bc'), color="black", size=10 , angle=-135, fontface="bold") + #U 14:00
       annotate("text", x = 4.5, limits, label = sprintf('\u25bc'), color="black", size=10 , angle=120, fontface="bold") +  # U21
       annotate("text", x = 1.75, limits, label = sprintf('\u25bc'), color="red", size=10 , angle=-75, fontface="bold") + #R 10
